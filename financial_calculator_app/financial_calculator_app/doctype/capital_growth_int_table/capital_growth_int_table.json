@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-22 20:50:20.026344",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "year",
+  "value",
+  "growth_rate",
+  "increase"
+ ],
+ "fields": [
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year"
+  },
+  {
+   "fieldname": "value",
+   "fieldtype": "Currency",
+   "label": "Value"
+  },
+  {
+   "fieldname": "growth_rate",
+   "fieldtype": "Percent",
+   "label": "Growth Rate"
+  },
+  {
+   "fieldname": "increase",
+   "fieldtype": "Currency",
+   "label": "Increase"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-22 20:52:06.136224",
+ "modified_by": "Administrator",
+ "module": "Financial Calculator App",
+ "name": "Capital Growth Int Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

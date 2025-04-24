@@ -6,6 +6,10 @@
  "engine": "InnoDB",
  "field_order": [
   "opportunity",
+  "column_break_psoi",
+  "forecast_type",
+  "column_break_aapr",
+  "forecast_name",
   "uk_investor_tab",
   "acqusition_costs_uk_investors_section",
   "asking_price",
@@ -26,10 +30,11 @@
   "post_works_refinance_section",
   "gross_development_value",
   "first_charge_lending",
-  "capital_left_in",
+  "capital_released",
   "column_break_ylly",
   "uplift",
-  "capital_released",
+  "first_charge_lending_ltv",
+  "capital_left_in",
   "rental_income_section",
   "rooms",
   "mortgage_pa",
@@ -70,10 +75,11 @@
   "int_post_work_refinance",
   "int_gross_development_value",
   "int_first_charge_lending",
-  "int_capital_left_in",
+  "int_capital_released",
   "column_break_scbe",
   "int_uplift",
-  "int_capital_released",
+  "int_first_charge_lending_ltv",
+  "int_capital_left_in",
   "int_rental_income",
   "int_rooms",
   "int_mortgage_pa",
@@ -110,13 +116,11 @@
    "label": "International Investor"
   },
   {
-   "collapsible": 1,
    "fieldname": "acqusition_costs_uk_investors_section",
    "fieldtype": "Section Break",
    "label": "ACQUSITION COSTS UK INVESTORS"
   },
   {
-   "collapsible": 1,
    "fieldname": "post_works_refinance_section",
    "fieldtype": "Section Break",
    "label": "POST WORKS REFINANCE"
@@ -217,7 +221,6 @@
    "label": "Capital Released"
   },
   {
-   "collapsible": 1,
    "fieldname": "rental_income_section",
    "fieldtype": "Section Break",
    "label": "RENTAL INCOME"
@@ -313,7 +316,6 @@
    "options": "Opportunity"
   },
   {
-   "collapsible": 1,
    "fieldname": "acqusition_costs_international_investors_section",
    "fieldtype": "Section Break",
    "label": "ACQUSITION COSTS INTERNATIONAL INVESTORS"
@@ -408,7 +410,6 @@
    "label": "Lending and Brokerage Fees"
   },
   {
-   "collapsible": 1,
    "fieldname": "int_post_work_refinance",
    "fieldtype": "Section Break",
    "label": "POST WORKS REFINANCE"
@@ -443,7 +444,6 @@
    "label": "Capital Released"
   },
   {
-   "collapsible": 1,
    "fieldname": "int_rental_income",
    "fieldtype": "Section Break",
    "label": "RENTAL INCOME"
@@ -530,11 +530,44 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "hello"
+  },
+  {
+   "fieldname": "column_break_psoi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "forecast_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Forecast Type",
+   "options": "Proposed\nActual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_aapr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "forecast_name",
+   "fieldtype": "Data",
+   "label": "Forecast Name"
+  },
+  {
+   "fieldname": "first_charge_lending_ltv",
+   "fieldtype": "Percent",
+   "label": "1st Charge Lending % LTV",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_first_charge_lending_ltv",
+   "fieldtype": "Percent",
+   "label": "1st Charge Lending % LTV",
+   "precision": "2"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-22 21:41:37.407525",
+ "modified": "2025-04-24 01:41:31.572678",
  "modified_by": "Administrator",
  "module": "Financial Calculator App",
  "name": "Financial Calculator",

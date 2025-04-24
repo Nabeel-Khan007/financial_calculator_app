@@ -124,6 +124,8 @@ class FinancialCalculator(Document):
         
         # 1st Charge Lending (75% of Gross Development Value)
         self.first_charge_lending = self.gross_development_value * 0.75
+
+        self.first_charge_lending_ltv = 75
         
         # Calculate total investment (same as capital_in)
         total_investment = self.clean_currency(self.purchase_price or 0) + \
@@ -496,6 +498,8 @@ class FinancialCalculator(Document):
         
         # 1st Charge Lending (75% of Gross Development Value)
         self.int_first_charge_lending = self.int_gross_development_value * 0.75
+
+        self.int_first_charge_lending_ltv = 75
         
         # Calculate total investment (same as capital_in)
         total_investment = self.clean_currency(self.int_purchase_price or 0) + \

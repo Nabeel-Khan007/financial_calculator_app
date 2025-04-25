@@ -29,6 +29,8 @@ doctype_js = {
     # "Lead": "public/js/lead.js"
 }
 
+# jinja
+
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 

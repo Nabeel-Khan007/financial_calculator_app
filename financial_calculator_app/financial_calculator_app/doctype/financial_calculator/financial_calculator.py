@@ -6,6 +6,9 @@ import re
 class FinancialCalculator(Document):
     def validate(self):
         if not hasattr(self, '_is_calculating'):
+            self.copy_details_to_uk_investor()
+            self.copy_details_to_int_investor()
+
             self.calculate_sdlt()
             self.calculate_acquisition_costs()
             self.calculate_post_works_refinance()
@@ -13,7 +16,6 @@ class FinancialCalculator(Document):
             self.calculate_capital_growth()
             self.calculate_capital_gain()
             self.calculate_returns()
-            # intternational_investor
             self.calculate_sdlt_amount()
             self.calculate_lending_and_brokerage_fees()
             self.calculate_project_management()
@@ -23,7 +25,64 @@ class FinancialCalculator(Document):
             self.calculate_capital_growth_int()
             self.calculate_capital_gain_int()
             self.calculate_returns_int()
+            self.calculate_main_average_ratewk()
+
     
+    def copy_details_to_uk_investor(self):
+        """Copy values from details tab to UK investor tab"""
+        # Map detail tab fields to UK investor tab fields
+        field_mapping = {
+            'main_asking_price': 'asking_price',
+            'main_purchase_price': 'purchase_price',
+            'main_renovation': 'renovation',
+            # Add all other fields that should be copied
+            'main_architectplanning': 'architectplanning',
+            'main_building_control': 'building_control',
+            'main_furniture': 'furniture',
+            'main_survey': 'survey',
+            'main_legals': 'legals',
+            'main_insurance': 'insurance',
+            'main_sourcing': 'sourcing',
+            'main_rooms': 'rooms',
+            'main_rentm_rm_rate_reverse_calc': 'rentm_rm_rate_reverse_calc',
+            'main_average_ratewk': 'average_ratewk',
+            'main_gross_development_value': 'gross_development_value'
+        }
+        
+        for detail_field, uk_field in field_mapping.items():
+            # Only copy if the UK field is empty and detail field has value
+            if getattr(self, detail_field, None) is not None:
+                setattr(self, uk_field, getattr(self, detail_field))
+
+    def copy_details_to_int_investor(self):
+        """Copy values from details tab to UK investor tab"""
+        # Map detail tab fields to UK investor tab fields
+        field_mapping = {
+            'main_asking_price': 'int_asking_price',
+            'main_purchase_price': 'int_purchase_price',
+            'main_renovation': 'int_renovation',
+            # Add all other fields that should be copied
+            'main_architectplanning': 'int_architectplanning',
+            'main_building_control': 'int_building_control',
+            'main_furniture': 'int_furniture',
+            'main_survey': 'int_survey',
+            'main_legals': 'int_legals',
+            'main_insurance': 'int_insurance',
+            'main_sourcing': 'int_sourcing',
+            'main_rooms': 'int_rooms',
+            'main_rentm_rm_rate_reverse_calc': 'int_rentm_rm_rate_reverse_calc',
+            'main_lease_setup': 'lease_setup',
+            'main_project_management_percentage': 'int_project_management_percentage',
+            'main_project_management': 'project_management',
+            'main_average_ratewk': 'int_average_ratewk',
+            'main_gross_development_value': 'int_gross_development_value'
+        }
+        
+        for detail_field, int_field in field_mapping.items():
+            # Only copy if the UK field is empty and detail field has value
+            if getattr(self, detail_field, None) is not None:
+                setattr(self, int_field, getattr(self, detail_field))
+
     def clean_currency(self, value):
         """Convert currency string to float by removing all non-numeric characters"""
         if value is None or value == "":
@@ -103,6 +162,9 @@ class FinancialCalculator(Document):
     def run_calculations(self):
         """Method called by the calculate button"""
         self._is_calculating = True
+        self.copy_details_to_uk_investor()
+        self.copy_details_to_int_investor()
+
         self.calculate_sdlt()
         self.calculate_acquisition_costs()
         self.calculate_post_works_refinance()
@@ -111,21 +173,35 @@ class FinancialCalculator(Document):
         self.calculate_capital_gain()
         self.calculate_returns()
 
+        self.calculate_sdlt_amount()
+        self.calculate_lending_and_brokerage_fees()
+        self.calculate_acquisition_costs_int()
+        self.calculate_post_works_refinance_int()
+        self.calculate_rental_income_int()
+        self.calculate_capital_growth_int()
+        self.calculate_capital_gain_int()
+        self.calculate_returns_int()
+
+        self.calculate_project_management()
+        self.calculate_main_average_ratewk()
+
         doc_dict = self.as_dict()
         return doc_dict
 
     def calculate_post_works_refinance(self):
         """Calculate post works refinance section"""
         # Gross Development Value comes from Asking Price
-        self.gross_development_value = self.clean_currency(self.asking_price or 0)
+        # self.gross_development_value = self.clean_currency(self.asking_price or 0)
+        gdv = self.clean_currency(self.gross_development_value or 0)
         
         # Uplift is difference between Asking Price and Purchase Price
-        self.uplift = self.gross_development_value - self.clean_currency(self.purchase_price or 0)
+        self.uplift = gdv - self.clean_currency(self.purchase_price or 0)
         
         # 1st Charge Lending (75% of Gross Development Value)
-        self.first_charge_lending = self.gross_development_value * 0.75
+        # self.first_charge_lending = self.gross_development_value * 0.75
+        self.first_charge_lending = float(self.gross_development_value) * (float(self.first_charge_lending_ltv) / 100)
 
-        self.first_charge_lending_ltv = 75
+        # self.first_charge_lending_ltv = 75
         
         # Calculate total investment (same as capital_in)
         total_investment = self.clean_currency(self.purchase_price or 0) + \
@@ -154,7 +230,7 @@ class FinancialCalculator(Document):
             rent_per_month = self.clean_currency(self.rentm_rm_rate_reverse_calc or 0)
             
             # Calculate weekly rent per room (monthly × 12 ÷ 52 ÷ rooms)
-            self.average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
+            # self.average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
 
             average_ratefield = (rent_per_month * 12) / 52 / rooms if rooms else 0
             
@@ -162,22 +238,23 @@ class FinancialCalculator(Document):
             self.gross_rent_pa = rooms * average_ratefield * 52
             
             # Calculate mortgage payments (6% of first_charge_lending)
-            mortgage_rate = 0.06  # 6%
+            mortgage_rate = float(self.mortgage_percent) / 100
             self.mortgage_pa = self.clean_currency(self.first_charge_lending or 0) * mortgage_rate
             
             # Operational expenses (0% of gross rent)
-            self.operational_expenses_pa = 0.00
+            self.operational_expenses_pa = float(self.gross_rent_pa) * (float(self.operational_expenses_percent) / 100)
             
             # Management fees (0% of gross rent)
-            self.management_pa = 0.00
+            self.management_pa = float(self.gross_rent_pa) * (float(self.management_percent) / 100)
 
             # Calculate net cash flow - no rounding
-            self.net_cash_flow_pa = (
+            net_cash_flow = (
                 self.gross_rent_pa - 
                 self.mortgage_pa - 
                 self.operational_expenses_pa - 
                 self.management_pa
             )
+            self.net_cash_flow_pa = float(f"{round(net_cash_flow):.0f}")
             
         except Exception as e:
             frappe.log_error(f"Error in rental income calculation: {str(e)}")
@@ -368,23 +445,23 @@ class FinancialCalculator(Document):
             frappe.msgprint(f"Error calculating returns: {str(e)}")
 
     # international investor working
-    @frappe.whitelist()
-    def run_calculations_int(self):
-        """Method called by the calculate button"""
-        self._is_calculating = True
-        # self.calculate_sdlt_amount()
-        self.calculate_sdlt_amount()
-        self.calculate_lending_and_brokerage_fees()
-        self.calculate_project_management()
-        self.calculate_acquisition_costs_int()
-        self.calculate_post_works_refinance_int()
-        self.calculate_rental_income_int()
-        self.calculate_capital_growth_int()
-        self.calculate_capital_gain_int()
-        self.calculate_returns_int()
+    # @frappe.whitelist()
+    # def run_calculations_int(self):
+    #     """Method called by the calculate button"""
+    #     self._is_calculating = True
+    #     # self.calculate_sdlt_amount()
+    #     self.calculate_sdlt_amount()
+    #     self.calculate_lending_and_brokerage_fees()
+    #     self.calculate_project_management()
+    #     self.calculate_acquisition_costs_int()
+    #     self.calculate_post_works_refinance_int()
+    #     self.calculate_rental_income_int()
+    #     self.calculate_capital_growth_int()
+    #     self.calculate_capital_gain_int()
+    #     self.calculate_returns_int()
 
-        doc_dict = self.as_dict()
-        return doc_dict
+    #     doc_dict = self.as_dict()
+    #     return doc_dict
 
     def calculate_acquisition_costs_int(self):
         """Calculate all acquisition cost related fields"""
@@ -413,8 +490,18 @@ class FinancialCalculator(Document):
 
     @frappe.whitelist()
     def calculate_project_management(self):
-        if self.int_renovation:
-            self.project_management = self.clean_currency(self.int_renovation) * 0.10
+        if self.main_renovation and self.main_project_management_percentage:
+            self.main_project_management = float(self.main_renovation) * (float(self.main_project_management_percentage) / 100)
+            # self.project_management = self.clean_currency(self.int_renovation) * 0.10
+
+    @frappe.whitelist()
+    def calculate_main_average_ratewk(self):
+        if self.main_rooms and self.main_rentm_rm_rate_reverse_calc:
+            rooms = float(self.main_rooms) if self.main_rooms else 0
+            rent_per_month = self.clean_currency(self.main_rentm_rm_rate_reverse_calc or 0)
+            
+            # Calculate weekly rent per room (monthly × 12 ÷ 52 ÷ rooms)
+            self.main_average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
 
     @frappe.whitelist()
     def calculate_all(self):
@@ -491,15 +578,18 @@ class FinancialCalculator(Document):
     def calculate_post_works_refinance_int(self):
         """Calculate post works refinance section"""
         # Gross Development Value comes from Asking Price
-        self.int_gross_development_value = self.clean_currency(self.int_asking_price or 0)
+        gdv = self.clean_currency(self.int_gross_development_value or 0)
+        # gdv = self.clean_currency(self.int_purchase_price or 0)
         
         # Uplift is difference between Asking Price and Purchase Price
-        self.int_uplift = self.int_gross_development_value - self.clean_currency(self.int_purchase_price or 0)
+        # self.int_uplift = self.int_gross_development_value - self.clean_currency(self.int_purchase_price or 0)
+        self.int_uplift = gdv - self.clean_currency(self.int_purchase_price or 0)
         
         # 1st Charge Lending (75% of Gross Development Value)
-        self.int_first_charge_lending = self.int_gross_development_value * 0.75
+        # self.int_first_charge_lending = self.int_gross_development_value * 0.75
+        self.int_first_charge_lending = float(self.int_gross_development_value) * (float(self.int_first_charge_lending_ltv) / 100)
 
-        self.int_first_charge_lending_ltv = 75
+        # self.int_first_charge_lending_ltv = 75
         
         # Calculate total investment (same as capital_in)
         total_investment = self.clean_currency(self.int_purchase_price or 0) + \
@@ -528,21 +618,21 @@ class FinancialCalculator(Document):
         """Calculate all rental income related fields"""
         try:
             rooms = float(self.int_rooms) if self.int_rooms else 0
-            rent_per_month = 870
+            rent_per_month = self.clean_currency(self.int_rentm_rm_rate_reverse_calc or 0)
             
-            self.int_average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
+            # self.int_average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
 
             average_ratefield = (rent_per_month * 12) / 52 / rooms if rooms else 0
             
             self.int_gross_rent_pa = rooms * average_ratefield * 52
 
-            mortgage_rate = 0.075  # 6%
+            mortgage_rate = float(self.int_mortgage_percent) / 100
             # self.int_mortgage_pa = self.clean_currency(self.int_first_charge_lending or 0) * mortgage_rate
             self.int_mortgage_pa = float(f"{round(self.clean_currency(self.int_first_charge_lending or 0) * mortgage_rate):.0f}")
             
-            self.int_operational_expenses_pa = 0.00
+            self.int_operational_expenses_pa = float(self.int_gross_rent_pa) * (float(self.int_operational_expenses_percent) / 100)
             
-            self.int_management_pa = 0.00
+            self.int_management_pa = float(self.int_gross_rent_pa) * (float(self.int_management_percent) / 100)
 
             net_cash_flow = (
                 self.int_gross_rent_pa - 
@@ -550,6 +640,8 @@ class FinancialCalculator(Document):
                 self.int_operational_expenses_pa - 
                 self.int_management_pa
             )
+            
+            
             self.int_net_cash_flow_pa = float(f"{round(net_cash_flow):.0f}")
             
         except Exception as e:
@@ -660,7 +752,7 @@ class FinancialCalculator(Document):
         """Calculate investment returns metrics and populate child table"""
         try:
             # Clear existing table
-            self.returns__int_table = []
+            self.returns_int_table = []
             
             # Ensure we have all required values
             if None in [self.int_capital_left_in, self.int_net_cash_flow_pa, self.int_first_charge_lending, self.int_asking_price]:

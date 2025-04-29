@@ -10,6 +10,31 @@
   "forecast_type",
   "column_break_aapr",
   "forecast_name",
+  "primary_variables_section",
+  "main_asking_price",
+  "main_gross_development_value",
+  "main_average_ratewk",
+  "column_break_etfk",
+  "main_purchase_price",
+  "main_rooms",
+  "column_break_mega",
+  "main_renovation",
+  "main_rentm_rm_rate_reverse_calc",
+  "secondary_variables_section",
+  "main_architectplanning",
+  "main_survey",
+  "column_break_mkaq",
+  "main_building_control",
+  "main_legals",
+  "column_break_zopb",
+  "main_furniture",
+  "main_insurance",
+  "income_variables_section",
+  "main_sourcing",
+  "main_project_management_percentage",
+  "column_break_egne",
+  "main_lease_setup",
+  "main_project_management",
   "uk_investor_tab",
   "acqusition_costs_uk_investors_section",
   "asking_price",
@@ -83,10 +108,11 @@
   "int_rental_income",
   "int_rooms",
   "int_mortgage_pa",
-  "int_net_cash_flow_pa",
+  "int_rentm_rm_rate_reverse_calc",
   "column_break_olrw",
   "int_average_ratewk",
   "int_operational_expenses_pa",
+  "int_net_cash_flow_pa",
   "column_break_qbyk",
   "int_gross_rent_pa",
   "int_management_pa",
@@ -563,11 +589,143 @@
    "fieldtype": "Percent",
    "label": "1st Charge Lending % LTV",
    "precision": "2"
+  },
+  {
+   "fieldname": "primary_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Variables"
+  },
+  {
+   "fieldname": "main_asking_price",
+   "fieldtype": "Data",
+   "label": "Asking Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_gross_development_value",
+   "fieldtype": "Data",
+   "label": "Gross Development Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_average_ratewk",
+   "fieldtype": "Data",
+   "label": "Average Rate/Wee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_etfk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_purchase_price",
+   "fieldtype": "Data",
+   "label": "Purchase Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_rooms",
+   "fieldtype": "Data",
+   "label": "Rooms",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_mega",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_renovation",
+   "fieldtype": "Data",
+   "label": "Renovation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_rentm_rm_rate_reverse_calc",
+   "fieldtype": "Data",
+   "label": "Rent/m (rm rate reverse calc)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "secondary_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Secondary Variables"
+  },
+  {
+   "fieldname": "main_architectplanning",
+   "fieldtype": "Data",
+   "label": "Architect/Planning"
+  },
+  {
+   "fieldname": "main_survey",
+   "fieldtype": "Data",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "column_break_mkaq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_building_control",
+   "fieldtype": "Data",
+   "label": "Building Control"
+  },
+  {
+   "fieldname": "main_legals",
+   "fieldtype": "Data",
+   "label": "Legals"
+  },
+  {
+   "fieldname": "column_break_zopb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_furniture",
+   "fieldtype": "Data",
+   "label": "Furniture"
+  },
+  {
+   "fieldname": "main_insurance",
+   "fieldtype": "Data",
+   "label": "Insurance"
+  },
+  {
+   "fieldname": "income_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Income Variables"
+  },
+  {
+   "fieldname": "main_sourcing",
+   "fieldtype": "Data",
+   "label": "Sourcing"
+  },
+  {
+   "fieldname": "main_project_management_percentage",
+   "fieldtype": "Phone",
+   "label": "Project Management Percentage"
+  },
+  {
+   "fieldname": "column_break_egne",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_lease_setup",
+   "fieldtype": "Data",
+   "label": "Lease Setup"
+  },
+  {
+   "fieldname": "main_project_management",
+   "fieldtype": "Data",
+   "label": "Project Management"
+  },
+  {
+   "fieldname": "int_rentm_rm_rate_reverse_calc",
+   "fieldtype": "Data",
+   "label": "Rent/m (rm rate reverse calc)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-24 01:41:31.572678",
+ "modified": "2025-04-26 15:36:48.330040",
  "modified_by": "Administrator",
  "module": "Financial Calculator App",
  "name": "Financial Calculator",

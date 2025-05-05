@@ -3,7 +3,7 @@ import frappe
 from frappe.model.document import Document
 import re
 
-class FinancialCalculator(Document):
+class FinancialCalculatorNew(Document):
     def validate(self):
         if not hasattr(self, '_is_calculating'):
             self.copy_details_to_uk_investor()

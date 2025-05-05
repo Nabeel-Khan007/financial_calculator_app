@@ -1,4 +1,4 @@
-frappe.ui.form.on('Financial Calculator', {
+frappe.ui.form.on('Financial Calculator New', {
     refresh: function(frm) {
         // Add single calculate button if not already present frm.is_new()
         // if(!frm.calculator_setup) {
@@ -46,6 +46,10 @@ frappe.ui.form.on('Financial Calculator', {
         }
     },
     main_rentm_rm_rate_reverse_calc: function(frm) {
+        if (frm.doc.main_rentm_rm_rate_reverse_calc) {
+            frm.set_value('main_lease_setup', frm.doc.main_rentm_rm_rate_reverse_calc);
+        }
+        
         if (frm.doc.main_rooms && frm.doc.main_rentm_rm_rate_reverse_calc) {
             frm.call('calculate_main_average_ratewk').then(() => {
                 frm.refresh_field('main_average_ratewk');

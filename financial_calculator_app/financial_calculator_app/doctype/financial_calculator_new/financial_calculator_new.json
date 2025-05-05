@@ -1,0 +1,801 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-05 01:25:02.197426",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "opportunity",
+  "column_break_wfxc",
+  "forecast_type",
+  "column_break_zvoy",
+  "forecast_name",
+  "primary_variables_section",
+  "main_asking_price",
+  "main_gross_development_value",
+  "main_average_ratewk",
+  "column_break_gtgh",
+  "main_purchase_price",
+  "main_rooms",
+  "column_break_rrxi",
+  "main_renovation",
+  "main_rentm_rm_rate_reverse_calc",
+  "secondary_variables_section",
+  "main_architectplanning",
+  "main_survey",
+  "column_break_voax",
+  "main_building_control",
+  "main_legals",
+  "column_break_tkxo",
+  "main_furniture",
+  "main_insurance",
+  "income_variables_section",
+  "main_sourcing",
+  "main_project_management_percentage",
+  "column_break_zuju",
+  "main_lease_setup",
+  "main_project_management",
+  "uk_investors_tab",
+  "acqusition_costs_uk_investors_section",
+  "asking_price",
+  "architectplanning",
+  "sdlt",
+  "legals",
+  "column_break_uvxm",
+  "purchase_price",
+  "building_control",
+  "sdlt_amount",
+  "insurance",
+  "capital_in",
+  "column_break_rbdu",
+  "renovation",
+  "furniture",
+  "survey",
+  "sourcing",
+  "post_works_refinance_section",
+  "gross_development_value",
+  "first_charge_lending",
+  "capital_released",
+  "column_break_ieph",
+  "uplift",
+  "first_charge_lending_ltv",
+  "capital_left_in",
+  "rental_income_section",
+  "rooms",
+  "mortgage_pa",
+  "operational_expenses_percent",
+  "rentm_rm_rate_reverse_calc",
+  "column_break_otym",
+  "average_ratewk",
+  "mortgage_percent",
+  "management_pa",
+  "net_cash_flow_pa",
+  "column_break_lewr",
+  "gross_rent_pa",
+  "operational_expenses_pa",
+  "management_percent",
+  "capital_growth_section",
+  "capital_growth_table",
+  "capital_gain_section",
+  "capital_gain_table",
+  "returns_section",
+  "returns_table",
+  "international_investors_tab",
+  "acqusition_costs_international_investors_section",
+  "int_asking_price",
+  "project_management",
+  "int_building_control",
+  "int_sdlt",
+  "int_insurance",
+  "lending_and_brokerage_fees",
+  "column_break_dnpo",
+  "int_purchase_price",
+  "int_project_management_percentage",
+  "int_furniture",
+  "int_sdlt_amount",
+  "int_sourcing",
+  "int_capital_in",
+  "column_break_ezky",
+  "int_renovation",
+  "int_architectplanning",
+  "int_survey",
+  "int_legals",
+  "lease_setup",
+  "int_post_works_refinance",
+  "int_gross_development_value",
+  "int_first_charge_lending",
+  "int_capital_released",
+  "column_break_mrio",
+  "int_uplift",
+  "int_first_charge_lending_ltv",
+  "int_capital_left_in",
+  "int_rental_income",
+  "int_rooms",
+  "int_mortgage_pa",
+  "int_operational_expenses_percent",
+  "int_rentm_rm_rate_reverse_calc",
+  "column_break_xypg",
+  "int_average_ratewk",
+  "int_mortgage_percent",
+  "int_management_pa",
+  "int_net_cash_flow_pa",
+  "column_break_gqit",
+  "int_gross_rent_pa",
+  "int_operational_expenses_pa",
+  "int_management_percent",
+  "int_capital_growth",
+  "capital_growth_int_table",
+  "int_capital_gain",
+  "capital_gain_int_table",
+  "int_returns",
+  "returns_int_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  },
+  {
+   "fieldname": "column_break_wfxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "forecast_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Forecast Type",
+   "options": "Proposed\nActual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_zvoy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "forecast_name",
+   "fieldtype": "Data",
+   "label": "Forecast Name"
+  },
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "uk_investors_tab",
+   "fieldtype": "Tab Break",
+   "label": "UK Investors"
+  },
+  {
+   "fieldname": "asking_price",
+   "fieldtype": "Data",
+   "label": "Asking Price"
+  },
+  {
+   "fieldname": "international_investors_tab",
+   "fieldtype": "Tab Break",
+   "label": "International Investors"
+  },
+  {
+   "fieldname": "primary_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Variables"
+  },
+  {
+   "fieldname": "main_asking_price",
+   "fieldtype": "Data",
+   "label": "Asking Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_gross_development_value",
+   "fieldtype": "Data",
+   "label": "Gross Development Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_average_ratewk",
+   "fieldtype": "Data",
+   "label": "Average Rate/Wee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_gtgh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_purchase_price",
+   "fieldtype": "Data",
+   "label": "Purchase Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_rooms",
+   "fieldtype": "Data",
+   "label": "Rooms",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rrxi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_renovation",
+   "fieldtype": "Data",
+   "label": "Renovation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "main_rentm_rm_rate_reverse_calc",
+   "fieldtype": "Data",
+   "label": "Rent/m (rm rate reverse calc)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "secondary_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Secondary Variables"
+  },
+  {
+   "fieldname": "architectplanning",
+   "fieldtype": "Data",
+   "label": "Architect/Planning"
+  },
+  {
+   "fieldname": "main_survey",
+   "fieldtype": "Data",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "column_break_voax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_building_control",
+   "fieldtype": "Data",
+   "label": "Building Control"
+  },
+  {
+   "fieldname": "main_legals",
+   "fieldtype": "Data",
+   "label": "Legals"
+  },
+  {
+   "fieldname": "column_break_tkxo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_furniture",
+   "fieldtype": "Data",
+   "label": "Furniture"
+  },
+  {
+   "fieldname": "main_insurance",
+   "fieldtype": "Data",
+   "label": "Insurance"
+  },
+  {
+   "fieldname": "income_variables_section",
+   "fieldtype": "Section Break",
+   "label": "Income Variables"
+  },
+  {
+   "fieldname": "main_sourcing",
+   "fieldtype": "Data",
+   "label": "Sourcing"
+  },
+  {
+   "default": "10",
+   "fieldname": "main_project_management_percentage",
+   "fieldtype": "Percent",
+   "label": "Project Management Percentage",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_zuju",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "main_lease_setup",
+   "fieldtype": "Data",
+   "label": "Lease Setup"
+  },
+  {
+   "fieldname": "main_project_management",
+   "fieldtype": "Data",
+   "label": "Project Management"
+  },
+  {
+   "fieldname": "main_architectplanning",
+   "fieldtype": "Data",
+   "label": "Architect/Planning"
+  },
+  {
+   "fieldname": "acqusition_costs_uk_investors_section",
+   "fieldtype": "Section Break",
+   "label": "ACQUSITION COSTS UK INVESTORS"
+  },
+  {
+   "fieldname": "sdlt",
+   "fieldtype": "Select",
+   "label": "SDLT",
+   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt"
+  },
+  {
+   "fieldname": "legals",
+   "fieldtype": "Data",
+   "label": "Legals"
+  },
+  {
+   "fieldname": "column_break_uvxm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_price",
+   "fieldtype": "Data",
+   "label": "Purchase Price"
+  },
+  {
+   "fieldname": "building_control",
+   "fieldtype": "Data",
+   "label": "Building Control"
+  },
+  {
+   "fieldname": "sdlt_amount",
+   "fieldtype": "Data",
+   "label": "SDLT Amount"
+  },
+  {
+   "fieldname": "insurance",
+   "fieldtype": "Data",
+   "label": "Insurance"
+  },
+  {
+   "fieldname": "capital_in",
+   "fieldtype": "Data",
+   "label": "Capital In"
+  },
+  {
+   "fieldname": "column_break_rbdu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "renovation",
+   "fieldtype": "Data",
+   "label": "Renovation"
+  },
+  {
+   "fieldname": "furniture",
+   "fieldtype": "Data",
+   "label": "Furniture"
+  },
+  {
+   "fieldname": "survey",
+   "fieldtype": "Data",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "sourcing",
+   "fieldtype": "Data",
+   "label": "Sourcing"
+  },
+  {
+   "fieldname": "post_works_refinance_section",
+   "fieldtype": "Section Break",
+   "label": "POST WORKS REFINANCE"
+  },
+  {
+   "fieldname": "gross_development_value",
+   "fieldtype": "Data",
+   "label": "Gross Development Value"
+  },
+  {
+   "fieldname": "first_charge_lending",
+   "fieldtype": "Data",
+   "label": "1st Charge Lending"
+  },
+  {
+   "fieldname": "capital_released",
+   "fieldtype": "Data",
+   "label": "Capital Released"
+  },
+  {
+   "fieldname": "column_break_ieph",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "uplift",
+   "fieldtype": "Data",
+   "label": "Uplift"
+  },
+  {
+   "default": "75",
+   "fieldname": "first_charge_lending_ltv",
+   "fieldtype": "Percent",
+   "label": "1st Charge Lending % LTV",
+   "precision": "2"
+  },
+  {
+   "fieldname": "capital_left_in",
+   "fieldtype": "Data",
+   "label": "Capital Left In"
+  },
+  {
+   "fieldname": "rental_income_section",
+   "fieldtype": "Section Break",
+   "label": "RENTAL INCOME"
+  },
+  {
+   "fieldname": "rooms",
+   "fieldtype": "Data",
+   "label": "Rooms"
+  },
+  {
+   "fieldname": "mortgage_pa",
+   "fieldtype": "Data",
+   "label": "Mortgage p.a."
+  },
+  {
+   "default": "0",
+   "fieldname": "operational_expenses_percent",
+   "fieldtype": "Percent",
+   "label": "Operational Expenses%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "rentm_rm_rate_reverse_calc",
+   "fieldtype": "Data",
+   "label": "Rent/m (rm rate reverse calc)"
+  },
+  {
+   "fieldname": "column_break_otym",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "average_ratewk",
+   "fieldtype": "Data",
+   "label": "Average Rate/Wk"
+  },
+  {
+   "default": "6",
+   "fieldname": "mortgage_percent",
+   "fieldtype": "Percent",
+   "label": "Mortgage%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "management_pa",
+   "fieldtype": "Data",
+   "label": "Management p.a."
+  },
+  {
+   "fieldname": "net_cash_flow_pa",
+   "fieldtype": "Data",
+   "label": "Net Cash Flow p.a."
+  },
+  {
+   "fieldname": "column_break_lewr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gross_rent_pa",
+   "fieldtype": "Data",
+   "label": "Gross Rent p.a."
+  },
+  {
+   "fieldname": "operational_expenses_pa",
+   "fieldtype": "Data",
+   "label": "Operational Expenses p.a."
+  },
+  {
+   "default": "0",
+   "fieldname": "management_percent",
+   "fieldtype": "Percent",
+   "label": "Management%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "capital_growth_section",
+   "fieldtype": "Section Break",
+   "label": "Capital Growth"
+  },
+  {
+   "fieldname": "capital_growth_table",
+   "fieldtype": "Table",
+   "options": "Capital Growth Table"
+  },
+  {
+   "fieldname": "capital_gain_section",
+   "fieldtype": "Section Break",
+   "label": "Capital Gain"
+  },
+  {
+   "fieldname": "capital_gain_table",
+   "fieldtype": "Table",
+   "options": "Capital Gain Table"
+  },
+  {
+   "fieldname": "returns_section",
+   "fieldtype": "Section Break",
+   "label": "Returns"
+  },
+  {
+   "fieldname": "returns_table",
+   "fieldtype": "Table",
+   "options": "Returns Table"
+  },
+  {
+   "fieldname": "acqusition_costs_international_investors_section",
+   "fieldtype": "Section Break",
+   "label": "ACQUSITION COSTS INTERNATIONAL INVESTORS"
+  },
+  {
+   "fieldname": "int_asking_price",
+   "fieldtype": "Data",
+   "label": "Asking Price"
+  },
+  {
+   "fieldname": "project_management",
+   "fieldtype": "Data",
+   "label": "Project Management"
+  },
+  {
+   "fieldname": "int_building_control",
+   "fieldtype": "Data",
+   "label": "Building Control"
+  },
+  {
+   "fieldname": "int_sdlt",
+   "fieldtype": "Select",
+   "label": "SDLT",
+   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt"
+  },
+  {
+   "fieldname": "int_insurance",
+   "fieldtype": "Data",
+   "label": "Insurance"
+  },
+  {
+   "fieldname": "lending_and_brokerage_fees",
+   "fieldtype": "Data",
+   "label": "Lending and Brokerage Fees"
+  },
+  {
+   "fieldname": "column_break_dnpo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "int_purchase_price",
+   "fieldtype": "Data",
+   "label": "Purchase Price"
+  },
+  {
+   "default": "10",
+   "fieldname": "int_project_management_percentage",
+   "fieldtype": "Percent",
+   "label": "Project Management %",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_furniture",
+   "fieldtype": "Data",
+   "label": "Furniture"
+  },
+  {
+   "fieldname": "int_sdlt_amount",
+   "fieldtype": "Data",
+   "label": "SDLT Amount"
+  },
+  {
+   "fieldname": "int_sourcing",
+   "fieldtype": "Data",
+   "label": "Sourcing"
+  },
+  {
+   "fieldname": "int_capital_in",
+   "fieldtype": "Data",
+   "label": "Capital In"
+  },
+  {
+   "fieldname": "column_break_ezky",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "int_renovation",
+   "fieldtype": "Data",
+   "label": "Renovation"
+  },
+  {
+   "fieldname": "int_architectplanning",
+   "fieldtype": "Data",
+   "label": "Architect/Planning"
+  },
+  {
+   "fieldname": "int_survey",
+   "fieldtype": "Data",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "int_legals",
+   "fieldtype": "Data",
+   "label": "Legals"
+  },
+  {
+   "fieldname": "lease_setup",
+   "fieldtype": "Data",
+   "label": "Lease Setup"
+  },
+  {
+   "fieldname": "int_post_works_refinance",
+   "fieldtype": "Section Break",
+   "label": "POST WORKS REFINANCE"
+  },
+  {
+   "fieldname": "int_gross_development_value",
+   "fieldtype": "Data",
+   "label": "Gross Development Value"
+  },
+  {
+   "fieldname": "int_first_charge_lending",
+   "fieldtype": "Data",
+   "label": "1st Charge Lending"
+  },
+  {
+   "fieldname": "int_capital_released",
+   "fieldtype": "Data",
+   "label": "Capital Released"
+  },
+  {
+   "fieldname": "column_break_mrio",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "int_uplift",
+   "fieldtype": "Data",
+   "label": "Uplift"
+  },
+  {
+   "default": "75",
+   "fieldname": "int_first_charge_lending_ltv",
+   "fieldtype": "Percent",
+   "label": "1st Charge Lending % LTV",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_capital_left_in",
+   "fieldtype": "Data",
+   "label": "Capital Left In"
+  },
+  {
+   "fieldname": "int_rental_income",
+   "fieldtype": "Section Break",
+   "label": "RENTAL INCOME"
+  },
+  {
+   "fieldname": "int_rooms",
+   "fieldtype": "Data",
+   "label": "Rooms"
+  },
+  {
+   "fieldname": "int_mortgage_pa",
+   "fieldtype": "Data",
+   "label": "Mortgage p.a."
+  },
+  {
+   "default": "0",
+   "fieldname": "int_operational_expenses_percent",
+   "fieldtype": "Percent",
+   "label": "Operational Expenses%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_rentm_rm_rate_reverse_calc",
+   "fieldtype": "Data",
+   "label": "Rent/m (rm rate reverse calc)"
+  },
+  {
+   "fieldname": "column_break_xypg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "int_average_ratewk",
+   "fieldtype": "Data",
+   "label": "Average Rate/Wk"
+  },
+  {
+   "default": "7.5",
+   "fieldname": "int_mortgage_percent",
+   "fieldtype": "Percent",
+   "label": "Mortgage%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_management_pa",
+   "fieldtype": "Data",
+   "label": "Management p.a."
+  },
+  {
+   "fieldname": "int_net_cash_flow_pa",
+   "fieldtype": "Data",
+   "label": "Net Cash Flow p.a."
+  },
+  {
+   "fieldname": "column_break_gqit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "int_gross_rent_pa",
+   "fieldtype": "Data",
+   "label": "Gross Rent p.a."
+  },
+  {
+   "fieldname": "int_operational_expenses_pa",
+   "fieldtype": "Data",
+   "label": "Operational Expenses p.a."
+  },
+  {
+   "default": "0",
+   "fieldname": "int_management_percent",
+   "fieldtype": "Percent",
+   "label": "Management%",
+   "precision": "2"
+  },
+  {
+   "fieldname": "int_capital_growth",
+   "fieldtype": "Section Break",
+   "label": "Capital Growth"
+  },
+  {
+   "fieldname": "capital_growth_int_table",
+   "fieldtype": "Table",
+   "options": "Capital Growth Int Table"
+  },
+  {
+   "fieldname": "int_capital_gain",
+   "fieldtype": "Section Break",
+   "label": "Capital Gain"
+  },
+  {
+   "fieldname": "capital_gain_int_table",
+   "fieldtype": "Table",
+   "options": "Capital Gain Int Table"
+  },
+  {
+   "fieldname": "int_returns",
+   "fieldtype": "Section Break",
+   "label": "Returns"
+  },
+  {
+   "fieldname": "returns_int_table",
+   "fieldtype": "Table",
+   "options": "Returns Int Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-05-05 02:33:28.386269",
+ "modified_by": "Administrator",
+ "module": "Financial Calculator App",
+ "name": "Financial Calculator New",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

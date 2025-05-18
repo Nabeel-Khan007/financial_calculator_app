@@ -46,7 +46,8 @@ class FinancialCalculatorNew(Document):
             'main_rooms': 'rooms',
             'main_rentm_rm_rate_reverse_calc': 'rentm_rm_rate_reverse_calc',
             'main_average_ratewk': 'average_ratewk',
-            'main_gross_development_value': 'gross_development_value'
+            'main_gross_development_value': 'gross_development_value',
+            'main_sdlt': 'sdlt'
         }
         
         for detail_field, uk_field in field_mapping.items():
@@ -75,7 +76,8 @@ class FinancialCalculatorNew(Document):
             'main_project_management_percentage': 'int_project_management_percentage',
             'main_project_management': 'project_management',
             'main_average_ratewk': 'int_average_ratewk',
-            'main_gross_development_value': 'int_gross_development_value'
+            'main_gross_development_value': 'int_gross_development_value',
+            'main_sdlt': 'int_sdlt'
         }
         
         for detail_field, int_field in field_mapping.items():
@@ -502,6 +504,17 @@ class FinancialCalculatorNew(Document):
             
             # Calculate weekly rent per room (monthly × 12 ÷ 52 ÷ rooms)
             self.main_average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
+            
+
+    @frappe.whitelist()
+    def calculate_rent(self):
+        if self.main_rooms and self.main_average_ratewk:
+            rooms = float(self.main_rooms) if self.main_rooms else 0
+            avg_rate_week = self.clean_currency(self.main_average_ratewk or 0)
+
+            self.main_rentm_rm_rate_reverse_calc = round((avg_rate_week * rooms * 52) / 12,2)
+            self.main_lease_setup = round((avg_rate_week * rooms * 52) / 12,2)
+
 
     @frappe.whitelist()
     def calculate_all(self):

@@ -1,12 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{forecast_name}-{####}",
  "creation": "2025-05-05 01:25:02.197426",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "details_tab",
   "opportunity",
+  "project",
   "column_break_wfxc",
   "forecast_type",
   "column_break_zvoy",
@@ -18,6 +20,7 @@
   "column_break_gtgh",
   "main_purchase_price",
   "main_rooms",
+  "main_sdlt",
   "column_break_rrxi",
   "main_renovation",
   "main_rentm_rm_rate_reverse_calc",
@@ -172,7 +175,8 @@
   {
    "fieldname": "asking_price",
    "fieldtype": "Data",
-   "label": "Asking Price"
+   "label": "Asking Price",
+   "read_only": 1
   },
   {
    "fieldname": "international_investors_tab",
@@ -245,6 +249,7 @@
    "label": "Architect/Planning"
   },
   {
+   "default": "600",
    "fieldname": "main_survey",
    "fieldtype": "Data",
    "label": "Survey"
@@ -254,11 +259,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "700",
    "fieldname": "main_building_control",
    "fieldtype": "Data",
    "label": "Building Control"
   },
   {
+   "default": "2500",
    "fieldname": "main_legals",
    "fieldtype": "Data",
    "label": "Legals"
@@ -268,11 +275,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "3000",
    "fieldname": "main_furniture",
    "fieldtype": "Data",
    "label": "Furniture"
   },
   {
+   "default": "550",
    "fieldname": "main_insurance",
    "fieldtype": "Data",
    "label": "Insurance"
@@ -309,6 +318,7 @@
    "label": "Project Management"
   },
   {
+   "default": "700",
    "fieldname": "main_architectplanning",
    "fieldtype": "Data",
    "label": "Architect/Planning"
@@ -322,7 +332,8 @@
    "fieldname": "sdlt",
    "fieldtype": "Select",
    "label": "SDLT",
-   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt"
+   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt",
+   "read_only": 1
   },
   {
    "fieldname": "legals",
@@ -336,7 +347,8 @@
   {
    "fieldname": "purchase_price",
    "fieldtype": "Data",
-   "label": "Purchase Price"
+   "label": "Purchase Price",
+   "read_only": 1
   },
   {
    "fieldname": "building_control",
@@ -365,7 +377,8 @@
   {
    "fieldname": "renovation",
    "fieldtype": "Data",
-   "label": "Renovation"
+   "label": "Renovation",
+   "read_only": 1
   },
   {
    "fieldname": "furniture",
@@ -390,7 +403,8 @@
   {
    "fieldname": "gross_development_value",
    "fieldtype": "Data",
-   "label": "Gross Development Value"
+   "label": "Gross Development Value",
+   "read_only": 1
   },
   {
    "fieldname": "first_charge_lending",
@@ -431,7 +445,8 @@
   {
    "fieldname": "rooms",
    "fieldtype": "Data",
-   "label": "Rooms"
+   "label": "Rooms",
+   "read_only": 1
   },
   {
    "fieldname": "mortgage_pa",
@@ -448,7 +463,8 @@
   {
    "fieldname": "rentm_rm_rate_reverse_calc",
    "fieldtype": "Data",
-   "label": "Rent/m (rm rate reverse calc)"
+   "label": "Rent/m (rm rate reverse calc)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_otym",
@@ -457,7 +473,8 @@
   {
    "fieldname": "average_ratewk",
    "fieldtype": "Data",
-   "label": "Average Rate/Wk"
+   "label": "Average Rate/Wk",
+   "read_only": 1
   },
   {
    "default": "6",
@@ -535,7 +552,8 @@
   {
    "fieldname": "int_asking_price",
    "fieldtype": "Data",
-   "label": "Asking Price"
+   "label": "Asking Price",
+   "read_only": 1
   },
   {
    "fieldname": "project_management",
@@ -551,7 +569,8 @@
    "fieldname": "int_sdlt",
    "fieldtype": "Select",
    "label": "SDLT",
-   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt"
+   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt",
+   "read_only": 1
   },
   {
    "fieldname": "int_insurance",
@@ -570,7 +589,8 @@
   {
    "fieldname": "int_purchase_price",
    "fieldtype": "Data",
-   "label": "Purchase Price"
+   "label": "Purchase Price",
+   "read_only": 1
   },
   {
    "default": "10",
@@ -606,7 +626,8 @@
   {
    "fieldname": "int_renovation",
    "fieldtype": "Data",
-   "label": "Renovation"
+   "label": "Renovation",
+   "read_only": 1
   },
   {
    "fieldname": "int_architectplanning",
@@ -636,7 +657,8 @@
   {
    "fieldname": "int_gross_development_value",
    "fieldtype": "Data",
-   "label": "Gross Development Value"
+   "label": "Gross Development Value",
+   "read_only": 1
   },
   {
    "fieldname": "int_first_charge_lending",
@@ -677,7 +699,8 @@
   {
    "fieldname": "int_rooms",
    "fieldtype": "Data",
-   "label": "Rooms"
+   "label": "Rooms",
+   "read_only": 1
   },
   {
    "fieldname": "int_mortgage_pa",
@@ -694,7 +717,8 @@
   {
    "fieldname": "int_rentm_rm_rate_reverse_calc",
    "fieldtype": "Data",
-   "label": "Rent/m (rm rate reverse calc)"
+   "label": "Rent/m (rm rate reverse calc)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_xypg",
@@ -703,7 +727,8 @@
   {
    "fieldname": "int_average_ratewk",
    "fieldtype": "Data",
-   "label": "Average Rate/Wk"
+   "label": "Average Rate/Wk",
+   "read_only": 1
   },
   {
    "default": "7.5",
@@ -772,14 +797,28 @@
    "fieldname": "returns_int_table",
    "fieldtype": "Table",
    "options": "Returns Int Table"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "main_sdlt",
+   "fieldtype": "Select",
+   "label": "SDLT",
+   "options": "Resi\nNon-Resi\nMixed-Use\nLand\nChain-Break\nExempt",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-05 02:33:28.386269",
+ "modified": "2025-05-19 03:18:20.246016",
  "modified_by": "Administrator",
  "module": "Financial Calculator App",
  "name": "Financial Calculator New",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

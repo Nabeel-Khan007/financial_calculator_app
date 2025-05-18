@@ -1,4 +1,48 @@
 frappe.ui.form.on('Financial Calculator New', {
+    opportunity: function(frm) {
+        if (frm.doc.opportunity) {
+            // Fetch Opportunity details
+            frappe.call({
+                method: 'frappe.client.get',
+                args: {
+                    doctype: 'Opportunity',
+                    name: frm.doc.opportunity
+                },
+                callback: function(response) {
+                    if (response.message) {
+                        const opp = response.message;
+                        // Set Forecast Name = "Opportunity Name - Address"
+                        frm.set_value('forecast_name', `${opp.name} - ${opp.custom_address || ''}`);
+                    }
+                }
+            });
+        } else {
+            // Clear if no Opportunity selected
+            frm.set_value('forecast_name', '');
+        }
+    },
+    project: function(frm) {
+        if (frm.doc.project) {
+            // Fetch Opportunity details
+            frappe.call({
+                method: 'frappe.client.get',
+                args: {
+                    doctype: 'Project',
+                    name: frm.doc.project
+                },
+                callback: function(response) {
+                    if (response.message) {
+                        const project = response.message;
+                        // Set Forecast Name = "Opportunity Name - Address"
+                        frm.set_value('forecast_name', `${project.name} - ${project.custom_address || ''}`);
+                    }
+                }
+            });
+        } else {
+            // Clear if no Opportunity selected
+            frm.set_value('forecast_name', '');
+        }
+    },
     refresh: function(frm) {
         // Add single calculate button if not already present frm.is_new()
         // if(!frm.calculator_setup) {
@@ -44,6 +88,12 @@ frappe.ui.form.on('Financial Calculator New', {
                 frm.refresh_field('main_average_ratewk');
             });
         }
+
+        if (frm.doc.main_rooms && frm.doc.main_average_ratewk) {
+            frm.call('calculate_rent').then(() => {
+                frm.refresh_field('main_rentm_rm_rate_reverse_calc');
+            });
+        }
     },
     main_rentm_rm_rate_reverse_calc: function(frm) {
         if (frm.doc.main_rentm_rm_rate_reverse_calc) {
@@ -53,6 +103,14 @@ frappe.ui.form.on('Financial Calculator New', {
         if (frm.doc.main_rooms && frm.doc.main_rentm_rm_rate_reverse_calc) {
             frm.call('calculate_main_average_ratewk').then(() => {
                 frm.refresh_field('main_average_ratewk');
+            });
+        }
+    },
+    main_average_ratewk: function(frm) {
+        if (frm.doc.main_rooms && frm.doc.main_average_ratewk) {
+            frm.call('calculate_rent').then(() => {
+                // frm.refresh_field('main_rentm_rm_rate_reverse_calc');
+                frm.refresh_fields(['main_rentm_rm_rate_reverse_calc', 'main_lease_setup']);
             });
         }
     },
@@ -76,7 +134,7 @@ function calculate_all(frm) {
     // First validate all required fields in details tab
     let required_fields = [
         'main_asking_price', 'main_purchase_price', 'main_renovation',
-        'main_rooms', 'main_rentm_rm_rate_reverse_calc','main_gross_development_value','main_average_ratewk'
+        'main_rooms', 'main_rentm_rm_rate_reverse_calc','main_gross_development_value','main_average_ratewk','main_sdlt'
     ];
     
     let missing_fields = [];

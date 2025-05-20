@@ -274,13 +274,13 @@ class FinancialCalculatorNew(Document):
             # Clear existing table
             self.capital_growth_table = []
             
-            if not self.asking_price:
-                frappe.msgprint("Please enter an Asking Price to see capital growth projections")
+            if not self.gross_development_value:
+                frappe.msgprint("Please enter an Gross Development value to see capital growth projections")
                 return
             
-            current_value = self.clean_currency(self.asking_price)
+            current_value = self.clean_currency(self.gross_development_value)
             if current_value <= 0:
-                frappe.msgprint("Please enter a valid positive Asking Price")
+                frappe.msgprint("Please enter a valid positive Gross Development value")
                 return
             
             growth_rate = 0.035  # Static 3.5% growth rate
@@ -319,11 +319,11 @@ class FinancialCalculatorNew(Document):
             # Clear existing table
             self.capital_gain_table = []
             
-            if not self.asking_price:
-                frappe.msgprint("Please enter an Asking Price to see capital gain projections")
+            if not self.gross_development_value:
+                frappe.msgprint("Please enter an gross development value to see capital gain projections")
                 return
             
-            current_value = self.clean_currency(self.asking_price)
+            current_value = self.clean_currency(self.gross_development_value)
             growth_rate = 0.035  # 3.5% growth rate
             
             # Calculate 10-year projection
@@ -369,7 +369,7 @@ class FinancialCalculatorNew(Document):
             self.returns_table = []
             
             # Ensure we have all required values
-            if None in [self.capital_left_in, self.net_cash_flow_pa, self.first_charge_lending, self.asking_price]:
+            if None in [self.capital_left_in, self.net_cash_flow_pa, self.first_charge_lending, self.gross_development_value]:
                 frappe.msgprint("Please complete all calculations first")
                 return
                 
@@ -379,7 +379,7 @@ class FinancialCalculatorNew(Document):
             
             # Calculate capital gain
             growth_rate = 0.035  # 3.5% growth
-            current_value = self.clean_currency(self.asking_price or 0)
+            current_value = self.clean_currency(self.gross_development_value or 0)
             capital_value_10yr = current_value * (1 + growth_rate)**10
             capital_gain = capital_value_10yr - float(self.first_charge_lending or 0) - retained_capital
             
@@ -544,7 +544,7 @@ class FinancialCalculatorNew(Document):
             # Total lending fees
             total_fees = fixed_fees + percentage_fees
 
-            self.lending_and_brokerage_fees = round(total_fees, 2)
+            self.lending_and_brokerage_fees = float(f"{round(total_fees):.0f}") #round(total_fees, 2)
 
         except Exception as e:
             frappe.log_error(f"Failed to calculate lending fees: {str(e)}")
@@ -673,13 +673,13 @@ class FinancialCalculatorNew(Document):
             # Clear existing table
             self.capital_growth_int_table = []
             
-            if not self.int_asking_price:
-                frappe.msgprint("Please enter an Asking Price to see capital growth projections")
+            if not self.int_gross_development_value:
+                frappe.msgprint("Please enter an Gross development value to see capital growth projections")
                 return
             
-            current_value = self.clean_currency(self.int_asking_price)
+            current_value = self.clean_currency(self.int_gross_development_value)
             if current_value <= 0:
-                frappe.msgprint("Please enter a valid positive Asking Price")
+                frappe.msgprint("Please enter a valid positive Gross development value")
                 return
             
             growth_rate = 0.035  # Static 3.5% growth rate
@@ -718,11 +718,11 @@ class FinancialCalculatorNew(Document):
             # Clear existing table
             self.capital_gain_int_table = []
             
-            if not self.int_asking_price:
-                frappe.msgprint("Please enter an Asking Price to see capital gain projections")
+            if not self.int_gross_development_value:
+                frappe.msgprint("Please enter an gross development value to see capital gain projections")
                 return
             
-            current_value = self.clean_currency(self.int_asking_price)
+            current_value = self.clean_currency(self.int_gross_development_value)
             growth_rate = 0.035  # 3.5% growth rate
             
             # Calculate 10-year projection
@@ -768,7 +768,7 @@ class FinancialCalculatorNew(Document):
             self.returns_int_table = []
             
             # Ensure we have all required values
-            if None in [self.int_capital_left_in, self.int_net_cash_flow_pa, self.int_first_charge_lending, self.int_asking_price]:
+            if None in [self.int_capital_left_in, self.int_net_cash_flow_pa, self.int_first_charge_lending, self.int_gross_development_value]:
                 frappe.msgprint("Please complete all calculations first")
                 return
                 
@@ -778,7 +778,7 @@ class FinancialCalculatorNew(Document):
             
             # Calculate capital gain
             growth_rate = 0.035  # 3.5% growth
-            current_value = self.clean_currency(self.int_asking_price or 0)
+            current_value = self.clean_currency(self.int_gross_development_value or 0)
             capital_value_10yr = current_value * (1 + growth_rate)**10
             capital_gain = capital_value_10yr - float(self.int_first_charge_lending or 0) - retained_capital
             
@@ -790,7 +790,7 @@ class FinancialCalculatorNew(Document):
             # annualized_roi = (annual_cashflow / retained_capital) * 100 if retained_capital else 0
             # lifetime_roi = (total_return / retained_capital) * 100 if retained_capital else 0
             annualized_roi = round((annual_cashflow / retained_capital) * 100, 2) if retained_capital else 0
-            # lifetime_roi = round((total_return / retained_capital) * 100, 2) if retained_capital else 0
+            lifetime_roi = round((total_return / retained_capital) * 100, 2) if retained_capital else 0
 
             formatted_retained_capital = "{:,.0f}".format(round(retained_capital))
             formatted_annual_cashflow = "{:,.0f}".format(round(annual_cashflow))
@@ -835,11 +835,11 @@ class FinancialCalculatorNew(Document):
                 "percentage": annualized_roi
             })
             
-            # self.append("returns_int_table", {
-            #     "metric": "Lifetime Return",
-            #     "value": 0,
-            #     "percentage": lifetime_roi
-            # })
+            self.append("returns_int_table", {
+                "metric": "Lifetime Return",
+                "value": 0,
+                "percentage": lifetime_roi
+            })
         
         except Exception as e:
             frappe.log_error(f"Error in calculate_returns: {str(e)}")

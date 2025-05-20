@@ -446,7 +446,7 @@ class FinancialCalculatorNew(Document):
             frappe.log_error(f"Error in calculate_returns: {str(e)}")
             frappe.msgprint(f"Error calculating returns: {str(e)}")
 
-    # international investor working
+    # international investor working start
     # @frappe.whitelist()
     # def run_calculations_int(self):
     #     """Method called by the calculate button"""

@@ -326,7 +326,7 @@ class FinancialCalculatorNew(Document):
             current_value = self.clean_currency(self.gross_development_value)
             growth_rate = 0.035  # 3.5% growth rate
             
-            # Calculate 10-year projection
+            # Calculate 10-year projection added
             capital_value_10yr = current_value * (1 + growth_rate)**10
             mortgage_lending = self.first_charge_lending
             equity_investment = self.capital_left_in

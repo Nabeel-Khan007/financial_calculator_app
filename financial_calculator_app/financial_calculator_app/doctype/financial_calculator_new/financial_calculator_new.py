@@ -446,7 +446,7 @@ class FinancialCalculatorNew(Document):
             frappe.log_error(f"Error in calculate_returns: {str(e)}")
             frappe.msgprint(f"Error calculating returns: {str(e)}")
 
-    # international investor working start
+    # international investor working start vb
     # @frappe.whitelist()
     # def run_calculations_int(self):
     #     """Method called by the calculate button"""
@@ -502,7 +502,7 @@ class FinancialCalculatorNew(Document):
             rooms = float(self.main_rooms) if self.main_rooms else 0
             rent_per_month = self.clean_currency(self.main_rentm_rm_rate_reverse_calc or 0)
             
-            # Calculate weekly rent per room (monthly × 12 ÷ 52 ÷ rooms)
+            # Calculate weekly rent per room (monthly × 12 ÷ 52 ÷ rooms)formula
             self.main_average_ratewk = round((rent_per_month * 12) / 52 / rooms if rooms else 0,2)
             
 

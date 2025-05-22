@@ -399,7 +399,7 @@ class FinancialCalculatorNew(Document):
             formatted_capital_gain = "{:,.0f}".format(round(capital_gain))
             formatted_total_return = "{:,.0f}".format(round(total_return))
             
-            # Populate child table
+            # Populate child table1
             self.append("returns_table", {
                 "metric": "Retained Capital",
                 "value": formatted_retained_capital,

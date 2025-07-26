@@ -24,10 +24,10 @@ app_license = "mit"
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
-doctype_js = {
-    "Opportunity": "public/js/opportunity.js"
-    # "Lead": "public/js/lead.js"
-}
+# doctype_js = {
+#     "Opportunity": "public/js/opportunity.js"
+#     # "Lead": "public/js/lead.js"
+# }
 
 # jinja
 
